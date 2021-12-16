@@ -146,4 +146,8 @@ makepkg -si
 
 
 echo "Installing AUR Packages"
-for
+for PKG in "${AUR_PACKAGES[@]}"; do
+  echo "Installing : ${PKG}"
+  sudo pacman -S "$PKG" --noconfirm --needed
+done
+
