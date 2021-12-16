@@ -1,4 +1,6 @@
-#!/bin/sh
+#!/bin/bash
+
+
 
 DRIVERS=(
 	"nvidia-dkms"
@@ -31,7 +33,7 @@ BROWSERS=(
 	"brave"
 	"chromium")
 
-TERMINAL=(
+TERMINALS=(
 	"konsole"
 	"alacritty")
 
@@ -78,7 +80,7 @@ AUR_PACKAGES=(
 	"protonup-qt"
 	"spotify-qt")
 
-
+# Install all packages that can be installed from Pacman
 
 echo -e "\nInstalling Nvidia Drivers\n"
 for PKG in "${DRIVERS[@]}"; do
@@ -123,7 +125,7 @@ for PKG in "${GAMING_UTILS[@]}"; do
 done
 
 echo -e "\nInstalling Virtualization Utilities\n"
-for PKG in "${VIRTUILIZATION_UTILS[@]}"; do
+for PKG in "${VIRTUALIZATION_UTILS[@]}"; do
 	echo "Installing : ${PKG}"
 	sudo pacman -S "$PKG" --noconfirm --needed
 done
@@ -134,20 +136,19 @@ for PKG in "${OTHER_PACKAGES[@]}"; do
 	sudo pacman -S "$PKG" --noconfirm --needed
 done
 
-
+# Build Yay from AUR to install other AUR packages
 
 YAY_URL="https://aur.archlinux.org/yay.git"
 
 mkdir ~/git
 git clone "$YAY_URL" ~/git
-cd ~/git/yay
+cd ~/git/yay || exit
 makepkg -si
 
-
+# Install all AUR packages
 
 echo "Installing AUR Packages"
 for PKG in "${AUR_PACKAGES[@]}"; do
   echo "Installing : ${PKG}"
   sudo pacman -S "$PKG" --noconfirm --needed
 done
-
