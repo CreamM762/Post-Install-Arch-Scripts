@@ -1,7 +1,5 @@
 #!/bin/bash
 
-
-
 DRIVERS=(
 	"nvidia-dkms"
 	"nvidia-settings"
@@ -85,55 +83,55 @@ AUR_PACKAGES=(
 echo -e "\nInstalling Nvidia Drivers\n"
 for PKG in "${DRIVERS[@]}"; do
 	echo "Installing : ${PKG}"
-	sudo pacman -S "$PKG" --noconfirm --needed
+	pacman -S "$PKG" --noconfirm --needed
 done
 
 echo -e "\nInstalling X Display Server\n"
 for PKG in "${DISPLAY_SERVER_UTILS[@]}"; do
 	echo "Installing : ${PKG}"
-	sudo pacman -S "$PKG" --noconfirm --needed
+	pacman -S "$PKG" --noconfirm --needed
 done
 
 echo -e "\nInstalling Desktop Environment and Display Manager\n"
 for PKG in "${DESKTOP_ENV[@]}"; do
 	echo "Installing : ${PKG}"
-	sudo pacman -S "$PKG" --noconfirm --needed
+	pacman -S "$PKG" --noconfirm --needed
 done
 
 echo -e "\nInstalling Browsers\n"
 for PKG in "${BROWSERS[@]}"; do
 	echo "Installing : ${PKG}"
-	sudo pacman -S "$PKG" --noconfirm --needed
+	pacman -S "$PKG" --noconfirm --needed
 done
 
 echo -e "\nInstalling Terminals\n"
 for PKG in "${TERMINALS[@]}"; do
 	echo "Installing : ${PKG}"
-	sudo pacman -S "$PKG" --noconfirm --needed
+	pacman -S "$PKG" --noconfirm --needed
 done
 
 echo -e "\nInstalling File Managers\n"
 for PKG in "${FILE_MANAGERS[@]}"; do
 	echo "Installing : ${PKG}"
-	sudo pacman -S "$PKG" --noconfirm --needed
+	pacman -S "$PKG" --noconfirm --needed
 done
 
 echo -e "\nInstalling Gaming Utilities\n"
 for PKG in "${GAMING_UTILS[@]}"; do
 	echo "Installing : ${PKG}"
-	sudo pacman -S "$PKG" --noconfirm --needed
+	pacman -S "$PKG" --noconfirm --needed
 done
 
 echo -e "\nInstalling Virtualization Utilities\n"
 for PKG in "${VIRTUALIZATION_UTILS[@]}"; do
 	echo "Installing : ${PKG}"
-	sudo pacman -S "$PKG" --noconfirm --needed
+	pacman -S "$PKG" --noconfirm --needed
 done
 
 echo -e "\nInstalling Everything Else\n"
 for PKG in "${OTHER_PACKAGES[@]}"; do
 	echo "Installing : ${PKG}"
-	sudo pacman -S "$PKG" --noconfirm --needed
+	pacman -S "$PKG" --noconfirm --needed
 done
 
 # Build Yay from AUR to install other AUR packages
@@ -150,5 +148,7 @@ makepkg -si
 echo "Installing AUR Packages"
 for PKG in "${AUR_PACKAGES[@]}"; do
   echo "Installing : ${PKG}"
-  sudo pacman -S "$PKG" --noconfirm --needed
+  yay -S "$PKG"
 done
+
+# EOF
